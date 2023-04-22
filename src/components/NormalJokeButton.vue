@@ -1,32 +1,24 @@
 <template>
   <div>
-    <button @click="(response) => {this.norm_joke = response.data}">Joke</button>
-    <p>{{ norm_jokes }}</p>
+    <button @click="normal_joke">Joke</button>
+    <p>{{ jokes }}</p>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
+    data() {
+        return{
+            jokes: `Jokes`,
+         }
+    },
   methods: {
-
-  },
-  data() {
-    return {
-      norm_jokes: undefined,
-    };
+    normal_joke: function (details) {
+      this.jokes = details;
+    },
   },
   mounted() {
-    axios
-      .request({
-        url: `https://ron-swanson-quotes.herokuapp.com/v2/quotes`,
-      })
-      .then((response) => {
-        this.norm_jokes = response.data;
-      })
-      .catch((error) => {
-        error;
-      });
+    this.$root.$on(`handle_norm_joke`, this.normal_joke);
   },
 };
 </script>
