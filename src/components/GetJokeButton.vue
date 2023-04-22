@@ -1,16 +1,15 @@
 <template>
   <div>
-    <button @click="this.$emit(`get_joke`, base_joke)">Get Joke</button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  data: {
-    return: {
+  data() {
+    return {
       base_joke: undefined,
-    },
+    }
   },
   mounted() {
     axios
@@ -18,7 +17,7 @@ export default {
         url: `https://ron-swanson-quotes.herokuapp.com/v2/quotes`,
       })
       .then((response) => {
-        this.base_joke = response[`data`]
+        this.$emit(this.base_joke = response.data)
       })
       .catch((error) => {
         error;
