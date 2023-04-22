@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="this.$emit(`norm_handle`, this.base_joke)">Normal Joke</button>
+    <button @click="this.$emit(`normal_button`, this.base_joke)">Normal Joke</button>
   </div>
 </template>
 

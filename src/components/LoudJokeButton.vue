@@ -1,16 +1,16 @@
 <template>
     <div>
-        <button @click="this.$emit(`loud_joke`, this.loud_joke)"> Loud Joke</button>
+        <button @click="this.$emit(`loud_button`, this.Loudly)"> Loud Joke</button>
     </div>
 </template>
 
 <script>
     export default {
-        data( ) {
-            return{
-                loud_joke:`this is loud`
-            }
-        },
+methods :  {
+   Loudly: function(details){
+    details.split(` `).join(`_`)
+   }
+}
     }
 </script>
 

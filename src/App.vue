@@ -2,45 +2,50 @@
   <div id="app">
     <display-joke></display-joke>
     <get-joke-button> </get-joke-button>
-    <normal-joke-button ></normal-joke-button>
+    <normal-joke-button></normal-joke-button>
     <snake-joke-button></snake-joke-button>
     <loud-joke-button></loud-joke-button>
   </div>
 </template>
 
 <script>
-import NormalJokeButton from '@/components/NormalJokeButton.vue';
-import GetJokeButton from '@/components/GetJokeButton.vue';
-import DisplayJoke from '@/components/DisplayJoke.vue';
-import SnakeJokeButton from '@/components/SnakeJokeButton.vue';
-import LoudJokeButton from '@/components/LoudJokeButton.vue';
+import NormalJokeButton from "@/components/NormalJokeButton.vue";
+import GetJokeButton from "@/components/GetJokeButton.vue";
+import DisplayJoke from "@/components/DisplayJoke.vue";
+import SnakeJokeButton from "@/components/SnakeJokeButton.vue";
+import LoudJokeButton from "@/components/LoudJokeButton.vue";
 
 export default {
   methods: {
     get_joke(base_joke) {
-      this.$root.$emit(`base_joke` , base_joke)
+      this.$root.$emit(`base_joke`, base_joke);
     },
-    return_joke(joke) {
-      this.$root.$emit(`normal_joke` , joke)
+    norm_joke(joke) {
+      this.$root.$emit(`normal_joke`, joke);
     },
-    make_loud(loud){
-      this.$root.$emit(`loud_joke` , loud)
+    make_loud(loud) {
+      this.$root.$emit(`loud_joke`, loud);
     },
-    make_snakey(snake){
-      this.$root.$emit(`snakey_jokes` , snake)
-    }
+    make_snakey(snake) {
+      this.$root.$emit(`snakey_jokes`, snake);
+    },
+  },
+  mounted() {
+    this.$on(`new_joke`, this.get_joke);
+    this.$on(`normal_button`, this.norm_joke);
+    this.$on(`snake_button`, this.make_loud);
+    this.$on(`loud_button`, this.make_snakey);
   },
 
-
-  name: 'App',
+  name: "App",
   components: {
-NormalJokeButton,
-GetJokeButton,
-DisplayJoke,
-SnakeJokeButton,
-LoudJokeButton,
-  }
-}
+    NormalJokeButton,
+    GetJokeButton,
+    DisplayJoke,
+    SnakeJokeButton,
+    LoudJokeButton,
+  },
+};
 </script>
 
 <style>

@@ -17,7 +17,7 @@ export default {
         url: `https://ron-swanson-quotes.herokuapp.com/v2/quotes`,
       })
       .then((response) => {
-        this.$emit(this.base_joke = response.data)
+        this.$emit(`new_joke` , response[`data`][0])
       })
       .catch((error) => {
         error;
