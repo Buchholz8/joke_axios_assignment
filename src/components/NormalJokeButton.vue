@@ -1,26 +1,28 @@
 <template>
   <div>
-    <button>Normal Joke</button>
-    <div v-for="(joke, i) in jokes" :key="i">
-      <p>{{ joke }}</p>
-    </div>
+    <button @click="(response) => {this.norm_joke = response.data}">Joke</button>
+    <p>{{ norm_jokes }}</p>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
+  methods: {
+
+  },
   data() {
     return {
-      jokes: undefined,
+      norm_jokes: undefined,
     };
   },
   mounted() {
-    axios.request({
+    axios
+      .request({
         url: `https://ron-swanson-quotes.herokuapp.com/v2/quotes`,
       })
       .then((response) => {
-        this.joke = response[`data`][`data`];
+        this.norm_jokes = response.data;
       })
       .catch((error) => {
         error;
